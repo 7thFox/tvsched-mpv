@@ -1,0 +1,89 @@
+{
+    "history_file": "./tv_history.txt",
+    "configs": [
+        {
+            "name": "High Priority Livestreams",
+            "priority": 100,
+            "live": {
+                "inturrupt_video": true,
+                "inturrupt_live":  true,// Inturrupt other livestreams *within another config group*
+                "max_late": "00:05:00", // Let videos finish if they're <= this amount left
+                "channels": [
+                    "yt UC2eYFnH61tmytImy1mTYvhA", // Luke Smith
+                    "yt UCa7DpOhQKAi-HKsbIJndwoA", // TheFranklin
+                    "twitch j_blow"
+                ]
+            }
+        },
+        {
+            "name": "Lower Priority Livestreams",
+            "priority": 150,
+            "live": {
+                "inturrupt_video": true,
+                "max_late": "00:05:00", // Let videos finish if they're <= this amount left
+                "channels": [
+                    "yt UCGe8kzr_18FIOzjkmzGzzuA", // Keith Woods
+                    "yt UChrYe70o7NmDioL02PRVWVg", // MattKC
+                    "yt @SargonofAkkad",
+                    "yt UCveAoJcCENtfZ4EVew-8F6w", // Lambda
+                    "yt @angloortho8146",
+                    "yt @ThePrudentialist",
+                    "yt UCj_9DU59oIHa_pt2aEphniA", // Lambda Bible Studies
+                    "yt UCdHT7KB1gDAXZYpPW71fn0Q"  // Distributist
+                ]
+            }
+        },
+
+        /* Time Slots: */
+        {
+            "priority": 1000,
+            "name": "Tech Hour",
+            "weekdays": "MTWRF",
+            "timeslot": "12pm-3pm",
+            "reruns": {
+                "min_recency_time": "-90days",
+                "min_rerun_time": "-30days",
+                "channels": [
+
+                ]
+            }
+        },
+        {
+            "priority": 1000,
+            "name": "Fun and Games",
+            "weekdays": "MTWRF",
+            "timeslot": "3pm-6pm",
+            "reruns": {
+                "min_date": "-365days",
+                "min_rerun_time": "-90days",
+                "channels": [
+
+                ]
+            }
+        },
+        {
+            "priority": 1000,
+            "name": "Politics Hour",
+            "weekdays": "MTWRF",
+            "timeslot": "7pm-9pm",
+            "reruns": {
+                "min_date": "-30days",
+                "min_rerun_time": "-14days",
+                "channels": [
+
+                ]
+            }
+        },
+
+        /* "Late Night TV" */
+        {
+            "name": "Backup",
+            "priority": 10000,
+            "video_paths": [
+                "https://www.youtube.com/shorts/uS8Xg6IC-FI",
+                "/home/josh/src/tvsched-mpv/test.webm",
+                "/home/josh/src/tvsched-mpv/test2.webm"
+            ]
+        }
+    ]
+}

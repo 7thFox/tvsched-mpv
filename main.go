@@ -98,11 +98,16 @@ func main() {
 		idleStarted := false
 
 		idle_active, err := conn.Get("idle-active")
-		if err == nil {
-			fmt.Print(idle_active)
-		}
 
-		playback_next(conn, config)
+		if err == nil {
+			if idle_active == true {
+				debugf("Playback is idle; starting playback")
+				idleStarted = true
+				playback_next(conn, config)
+			} else {
+				debugf("Playback is active; waiting for idle signal")
+			}
+		}
 
 		for e := range mpvEvents {
 			tracef("Event: %s", e.Name)

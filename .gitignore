@@ -1,5 +1,4 @@
 *.webm
-go.sum
 *.jsonc
 
 *history.txt

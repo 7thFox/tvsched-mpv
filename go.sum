@@ -1,0 +1,6 @@
+github.com/DexterLB/mpvipc v0.0.0-20221227161445-38b9935eae9d h1:UyefntSsjbYaTDUdZF4A1vPZX3Xpnewv6JNBzQPYAzY=
+github.com/DexterLB/mpvipc v0.0.0-20221227161445-38b9935eae9d/go.mod h1:nMVB54ifXmC1hpgfq7gTpotbv891pd2wAX/whuUj1q4=
+golang.org/x/sys v0.4.0 h1:Zr2JFtRQNX3BCZ8YtxRE9hNJYC8J6I1MVbMg6owUp18=
+golang.org/x/sys v0.4.0/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
+gopkg.in/natefinch/npipe.v2 v2.0.0-20160621034901-c1b8fa8bdcce h1:+JknDZhAj8YMt7GC73Ei8pv4MzjDUNPHgQWJdtMAaDU=
+gopkg.in/natefinch/npipe.v2 v2.0.0-20160621034901-c1b8fa8bdcce/go.mod h1:5AcXVHNjg+BDxry382+8OKon8SEWiKktQR07RKPsv1c=

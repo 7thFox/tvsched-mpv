@@ -97,6 +97,11 @@ func main() {
 	go func() {
 		idleStarted := false
 
+		idle_active, err := conn.Get("idle-active")
+		if err == nil {
+			fmt.Print(idle_active)
+		}
+
 		playback_next(conn, config)
 
 		for e := range mpvEvents {

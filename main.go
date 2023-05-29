@@ -96,6 +96,9 @@ func main() {
 
 	go func() {
 		idleStarted := false
+
+		playback_next(conn, config)
+
 		for e := range mpvEvents {
 			tracef("Event: %s", e.Name)
 
@@ -104,25 +107,9 @@ func main() {
 				debugf("Ended playback")
 				fallthrough
 			case "idle":
-				if !idleStarted && !conn.IsClosed() {
+				if !idleStarted {
 					idleStarted = true
-					next := config.next_video()
-					debugf("Starting playback: %s", next)
-					if config.HistoryFilePath != "" {
-						his, err := os.OpenFile(config.HistoryFilePath, os.O_WRONLY|os.O_APPEND|os.O_CREATE, 0664)
-						if err != nil {
-							errorf("Failed to open history file: %s", err.Error())
-						} else {
-							fmt.Fprintf(his, "%s\t%s", time.Now().Format(time.DateTime), next)
-							if err = his.Close(); err != nil {
-								errorf("Failed to close history file: %s", err.Error())
-							}
-						}
-					}
-					_, err := conn.Call("loadfile", next)
-					if err != nil {
-						errorf("Error playing next video: %s", err.Error())
-					}
+					playback_next(conn, config)
 				}
 			case "start-file":
 				idleStarted = false
@@ -140,6 +127,29 @@ func main() {
 
 	conn.ListenForEvents(mpvEvents, mpvExited)
 	debugf("exiting")
+}
+
+func playback_next(conn *mpvipc.Connection, config *sched_config) {
+	if !conn.IsClosed() {
+		next := config.next_video()
+		debugf("Starting playback: %s", next)
+		if config.HistoryFilePath != "" {
+			his, err := os.OpenFile(config.HistoryFilePath, os.O_WRONLY|os.O_APPEND|os.O_CREATE, 0664)
+			if err != nil {
+				errorf("Failed to open history file: %s", err.Error())
+			} else {
+				fmt.Fprintf(his, "%s\t%s", time.Now().Format(time.DateTime), next)
+				if err = his.Close(); err != nil {
+					errorf("Failed to close history file: %s", err.Error())
+				}
+			}
+		}
+		_, err := conn.Call("loadfile", next)
+		if err != nil {
+			errorf("Error playing next video: %s", err.Error())
+		}
+	}
+
 }
 
 // func startNext(conn *mpvipc.Connection, queue *video_queue) {

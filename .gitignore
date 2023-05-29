@@ -1,3 +1,6 @@
 *.webm
 go.sum
 *.jsonc
+
+*history.txt
+tvsched-mpv
